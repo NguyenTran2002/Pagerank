@@ -142,8 +142,7 @@ print("\nAverage Pagerank Value:\n" + str(average_pagerank))
 
 # print important notes
 print("\nNotes:")
-print("The program keeps looping until the improvment (change) in the new found pagerank value\
-    is less than 1 percent compared to the previous values.")
+print("The program keeps looping until the improvment (change) in the new found pagerank value is less than 1 percent compared to the previous values.")
 print("The average pagerank value should ALWAYS be roughly 1.0 for any closed network.")
 
 print("\n")

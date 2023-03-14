@@ -42,6 +42,12 @@ else:
     network_data_file = "Network 1.csv"
     network_df = pd.read_csv("Data/" + network_data_file)
 
+# replace all nan values with empty strings
+network_df = network_df.fillna('')
+
+# convert all columns of the dataframe to string type expect for nan values
+network_df = network_df.astype(str)
+
 # convert the read in network dataframe into an adjacency list
 
 # create an empty dictionary
@@ -160,7 +166,8 @@ for page in adjacency_list:
 # add edges to the graph from the adjacency list
 for page in adjacency_list:
     
-        for link in adjacency_list[page]:
+    for link in adjacency_list[page]:
+        if len(link) > 0:
             network_graph.add_edge(page, link)
 
 

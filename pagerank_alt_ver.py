@@ -89,7 +89,7 @@ loop_count = 0
 # keep updating the pagerank values until the change factor is less than 0.01
 while change_factor > 0.0001:
 
-    # create a copy of the current pagerank dictionary
+    # create a copy of the current pagerank dictionary (just to calculate the change factor later on)
     old_pagerank = pagerank.copy()
 
     # loop through each item in the pagerank dictionary

@@ -87,7 +87,7 @@ change_factor = float('inf')
 loop_count = 0
 
 # keep updating the pagerank values until the change factor is less than 0.01
-while change_factor > 0.01:
+while change_factor > 0.0001:
 
     # create a copy of the current pagerank dictionary
     old_pagerank = pagerank.copy()

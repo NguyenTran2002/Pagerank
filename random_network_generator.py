@@ -67,10 +67,14 @@ df = pd.DataFrame(list(zip(list_vertices, list_links)), columns =['Page', 'Links
 name = input("File Name to Save (in Data Folder): ")
 
 # add the file extension if the user forgot to do so (and if the input is not empty)
-if name[-4:] != ".csv" and len(name) > 0:
-    name = name + ".csv"
-else:
+if len(name) == 0:
     name = "Random Network.csv"
+
+elif name[-4:] != ".csv":
+    name = name + ".csv"
+
+else:
+    pass
 
 path = "Data/" + name
 

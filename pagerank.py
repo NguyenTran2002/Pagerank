@@ -24,8 +24,23 @@ clear()
 # ---------------------------------
 # User Input
 
+# overview instruction
+print("PageRank is an iterative algorithm that starts out by assigning a default value of 1.0 to all pages.\n\
+The algorithm then recalculates the PR value according to the specified number of loops below.\n\
+Generally, the more loops chosen, the more accurate the PR values will be, and the more expensive the algorithm becomes.\n\
+The default number of loops is 40 of nothing is given into the input.\n")
+
+# read in user's number of loops
+num_loops = input("Specify Number of Loops: ")
+
+# if the user did not specify a number of loops, set it to 40
+if len(num_loops) == 0:
+    num_loops = 40
+else:
+    num_loops = int(num_loops)
+
 # read in user's input network
-network_data_file = input("Your Network Data (copy paste the file name from the Data folder): ")
+network_data_file = input("\nYour Network Data (copy paste the file name from the Data folder): ")
 
 # add the file extension if the user forgot to do so (and if the input is not empty)
 if network_data_file[-4:] != ".csv" and len(network_data_file) > 0:
@@ -80,14 +95,8 @@ for page in adjacency_list:
 # set the damping factor
 damping_factor = 0.85
 
-# set change factor
-change_factor = float('inf')
-
-# keep track of the number of loops
-loop_count = 0
-
 # keep updating the pagerank values until the change factor is less than 0.01
-while change_factor > 0.0001:
+for i in range(num_loops):
 
     # create a copy of the current pagerank dictionary (just to calculate the change factor later on)
     old_pagerank = pagerank.copy()
@@ -107,20 +116,6 @@ while change_factor > 0.0001:
         # calculate the pagerank value for the page
         pagerank[page] = (1 - damping_factor) + damping_factor * raw_score
 
-    # calculate the change factor from the old and new pagerank values, pick the largest change
-    local_max_change_factor = 0
-    for page in pagerank:
-        change_factor = abs(pagerank[page] - old_pagerank[page]) / old_pagerank[page]
-        if change_factor > local_max_change_factor:
-            local_max_change_factor = change_factor
-
-    # update the global change factor
-    if local_max_change_factor < change_factor:
-        change_factor = local_max_change_factor
-
-    # increment the loop count
-    loop_count += 1
-
 
 # ---------------------------------
 # Output Results
@@ -133,7 +128,7 @@ print("Network Data File: " + network_data_file + "")
 # print the damping factor and number of loops
 print("\nComputed pagerank values for the network using:")
 print("Damping Factor: " + str(damping_factor))
-print("Number of Loops: " + str(loop_count))
+print("Number of Loops: " + str(num_loops))
 
 # print the pagerank values
 print ("\nResulting Pagerank Values:")
@@ -148,7 +143,6 @@ print("\nAverage Pagerank Value:\n" + str(average_pagerank))
 
 # print important notes
 print("\nNotes:")
-print("The program keeps looping until the improvment (change) in the new found pagerank value is less than 0.01 percent compared to the previous values.")
 print("The average pagerank value will usually be roughly 1.0 for any CLOSED network. A clear example of this is network 1.")
 
 print("\n")

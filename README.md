@@ -2,6 +2,9 @@
 
 This repository provides 3 programs using the PageRank algorithm.
 
+# Install Pre-requisites
+Run the command `pip3 install -r requirements.txt` or `pip install -r requirements.txt` depends on your Python version.
+
 # How to Run
 
 After installing all requirements, the user can simply any of the .py program by the command `python3 example_program.py` or `python example_program.py` depending on the user's Python version.
